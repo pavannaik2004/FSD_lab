@@ -1,65 +1,31 @@
 body {
-  margin: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #ffffff;
+  font-family: Arial;
 }
 
-#root {
-  display: inline-block;
-  padding: 10px;
+div {
   border: 2px solid #b0b0ff;
-}
-
-h1 {
-  margin: 0 0 15px 0;
-  font-size: 22px;
-  color: #000000;
-}
-
-/* person info block */
-#root > div {
-  display: inline-block;
-  padding: 8px;
-  border: 2px solid #b0b0ff;
-  font-size: 12px;
-}
-
-#root > div > div {
-  display: inline-block;
   padding: 5px;
-  border: 2px solid #b0b0ff;
+  display: inline-block;
 }
 
-#root > div p {
+p {
   display: inline-block;
+  border: 1px solid gray;
   margin: 0;
   padding: 3px;
-  border: 1px solid #999999;
-}
-
-/* education table */
-section {
-  margin-top: 15px;
 }
 
 table {
-  border-collapse: separate;
-  border: 2px solid #4b0082;
-  background-color: #800080;
-  font-size: 12px;
+  background-color: purple;
+  margin-top: 15px;
 }
-
 th {
+  color: cyan;
+  border: 1px solid cyan;
   padding: 3px 10px;
-  color: #00ffff;
-  background-color: #6a0dad;
-  border: 1px solid #00ffff;
 }
-
 td {
+  color: gold;
+  border: 1px solid cyan;
   padding: 3px 10px;
-  color: #ffd700;
-  background-color: #8a2be2;
-  border: 1px solid #00ffff;
-  text-align: center;
 }

@@ -1,0 +1,12 @@
+{
+  "name": "2ndprog",
+  "version": "1.0.0",
+  "description": "Express app to accept student name, branch and semester via GET and POST",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

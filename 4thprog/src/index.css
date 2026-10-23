@@ -1,0 +1,20 @@
+body {
+  font-family: Arial;
+}
+
+div {
+  border: 1px solid blue;
+  padding: 5px;
+  display: inline-block;
+}
+
+table {
+  background-color: blueviolet;
+  border: 3px solid blue;
+}
+
+th {
+  color: cyan;
+  border: 2px solid cyan;
+  padding: 3px;
+}

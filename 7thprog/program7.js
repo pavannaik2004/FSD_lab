@@ -1,14 +1,12 @@
-// Program 7: MongoDB queries using Comparison Selectors and Logical Selectors
-// for a Company database.
-//
-// Run with:   mongosh program7.js
-// or inside mongosh:   load("program7.js")
+// Program 7: MongoDB Queries using Comparison Selectors and Logical Selectors
 
-db = db.getSiblingDB("company");
+// 1. Select database
+use company
 
-// ---------- Setup: sample employees collection ----------
-db.employees.drop();
+// 2. Drop existing employees collection
+db.employees.drop()
 
+// 3. Insert sample employee records
 db.employees.insertMany([
   {
     employee_id: 101,
@@ -54,53 +52,52 @@ db.employees.insertMany([
     hire_date: new Date("2024-08-01"),
     status: "On Leave"
   }
-]);
+])
 
-// ---------- 1. Comparison Selectors ----------
+// 4. Comparison Selectors
 
-// $gt & $lte: salary > 90000 and <= 120000  -> Sonia Rao, Arjun Singh
-print("\n1a. $gt & $lte : salary > 90000 and <= 120000");
-printjson(db.employees.find({
+// 4a. $gt and $lte: Salary greater than 90000 and less than or equal to 120000
+db.employees.find({
   salary: { $gt: 90000, $lte: 120000 }
-}).toArray());
+})
 
-// $in: department is HR or Sales  -> Rajesh Kumar, Priya Mehta, Vikram Reddy
-print("\n1b. $in : department in [HR, Sales]");
-printjson(db.employees.find({
+// 4b. $in: Employees belonging to HR or Sales department
+db.employees.find({
   department: { $in: ["HR", "Sales"] }
-}).toArray());
+})
 
-// $ne: status is not "On Leave"  -> everyone except Vikram Reddy
-print("\n1c. $ne : status != 'On Leave'");
-printjson(db.employees.find({
+// 4c. $ne: Employees whose status is not On Leave
+db.employees.find({
   status: { $ne: "On Leave" }
-}).toArray());
+})
 
-// ---------- 2. Logical Selectors ----------
+// 5. Logical Selectors
 
-// Implicit $and: Engineering AND performance_score >= 4.5  -> Sonia Rao, Arjun Singh
-print("\n2a. Implicit $and : Engineering with performance_score >= 4.5");
-printjson(db.employees.find({
+// 5a. Implicit $and: Engineering employees with performance score >= 4.5
+db.employees.find({
   department: "Engineering",
   performance_score: { $gte: 4.5 }
-}).toArray());
+})
 
-// $or: department is HR OR salary > 100000  -> Rajesh Kumar, Arjun Singh
-print("\n2b. $or : department HR OR salary > 100000");
-printjson(db.employees.find({
+// 5b. $or: Employees belonging to HR department OR earning more than 100000
+db.employees.find({
   $or: [
     { department: "HR" },
     { salary: { $gt: 100000 } }
   ]
-}).toArray());
+})
 
-// ---------- 3. Combining Selectors (Complex Query) ----------
+// 6. Combining Comparison and Logical Selectors
 
-// Active employees in Engineering or Sales hired before 2024
-// -> Sonia Rao, Arjun Singh, Priya Mehta
-print("\n3. Complex : Active, in Engineering/Sales, hired before 2024");
-printjson(db.employees.find({
+// Find Active employees in Engineering or Sales hired before 2024
+db.employees.find({
   status: "Active",
   department: { $in: ["Engineering", "Sales"] },
   hire_date: { $lt: new Date("2024-01-01") }
-}).toArray());
+})
+
+// 7. Display all employees
+db.employees.find()
+
+// 8. Count total employees
+db.employees.countDocuments()
